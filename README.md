@@ -56,6 +56,8 @@ Use java to run the jar:
 
 The initial project was generated using a template: <https://github.com/reagent-project/reagent-template>
 
+SVG samples are original works. Thanks to <https://developer.mozilla.org> for the SVG documentation.
+
 # License
 
 MIT license, same as the above template.

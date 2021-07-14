@@ -25,6 +25,8 @@
    :width 300
    :height 300
    :style "svg {stroke: green;}" ;; or omit style to use default.
+   :colors ["red" "blue" "teal"] ;; default is cornflowerblue
+   :padding 5                    ;; default is 5
    :tags #{:vertical}}
   bar-data)
 
@@ -59,24 +61,27 @@ fill: white;
 .bar {
 stroke: silver;
 stroke-width: 3;
-fill: cornflowerblue;
 }
 ")
+
+(def bar-color-default "cornflowerblue")
 
 (defn wrap-style [style-string]
   [:style {:type "text/css" :scoped true} style-string])
 
-(defn bar-graph-item [box n item]
-  (let [{:keys [box-id box-height max-val thickness padding]} box
+(defn bar-graph-item [box i item]
+  (let [{:keys [box-id box-height max-val thickness padding colors]} box
         {:keys [label value]} item
+        fill (nth colors (rem i (count colors)) bar-color-default)
         bar-length (-> (float value) (* box-height) (/ max-val) (* 0.8))]
-    ^{:key (str "bar-item-" box-id "." n)} 
-    [:svg {:x padding :y (+ padding (* n thickness))}
-     [:rect {:class "bar" :width bar-length :height thickness :rx 10}]
+    ^{:key (str "bar-item-" box-id "." i)}
+    [:svg {:x padding :y (+ padding (* i thickness))}
+     [:rect {:class "bar" :fill fill :width bar-length :height thickness :rx 10}]
        [:text {:x (+ bar-length 10) :y 25 :dy "10pt" } label]]))
 
 (defn bar-graph [config data]
-  (let [{:keys [width height title style]} config 
+  (let [{:keys [width height title style colors padding]
+         :or {colors [bar-color-default] padding 5}} config
         vertical? (get-in config [:tags :vertical])
         [box-width box-height] (if vertical?
                                  [height width]
@@ -91,7 +96,8 @@ fill: cornflowerblue;
              :box-height box-height
              :thickness thickness
              :max-val max-val
-             :padding 5}]
+             :colors colors
+             :padding padding}]
     [:div
      [:svg {:width width :height height}
       (wrap-style (or style bar-graph-style))

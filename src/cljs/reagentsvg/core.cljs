@@ -38,14 +38,17 @@
 
 (defn home-page []
   (fn []
-    [:span.main
+    [:div.main
      [:h1 "Welcome to reagentsvg"]
      [:p "Line graph"]
      (graph/line-graph line-config line-data)
      [:p "Vertical bar graph"]
      (graph/bar-graph bar-config bar-data)
      [:p "Horizontal graph"]
-     (graph/bar-graph (dissoc bar-config :tags) bar-data)
+     (graph/bar-graph (-> bar-config
+                          (assoc :colors ["firebrick" "teal" "goldenrod"])
+                          (dissoc :tags))
+                      bar-data)
      ]))
 
 

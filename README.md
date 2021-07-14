@@ -4,6 +4,10 @@ SVG charting demo using clojure and reagent
 
 ## Sample Rendering
 
+Line chart
+
+![Line chart](sample-linechart.svg?raw=true)
+
 Vertical bar chart
 
 ![Vertical bar chart](sample-barchart-v.svg?raw=true)

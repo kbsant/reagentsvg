@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg  xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+<style type="text/css" scoped="">
+.box {
+fill: black;
+}
+g text {
+fill: white;
+}
+.guide {
+fill: none;
+stroke: cyan;
+stroke-width: 1;
+stroke-dasharray: 2;
+}
+.area {
+fill: darkslategray;
+}
+.line {
+stroke: darkslateblue;
+stroke-width: 3;
+}
+.dot {
+stroke: silver;
+stroke-width: 1;
+fill: cyan;
+}
+</style><title>Line Chart</title><g><rect class="box" width="100%" height="100%"></rect><polygon class="area" points="5 300,5 60,65 252,125 180,185 156,185 300"></polygon><path class="guide" d="M 5 60 V 300 M 65 252 V 300 M 125 180 V 300 M 185 156 V 300 "></path><polyline class="line" points="5 60,65 252,125 180,185 156"></polyline><g><circle class="dot" cx="5" cy="60" r="5"></circle><text x="5" y="70" dy="10pt">max</text></g><g><circle class="dot" cx="65" cy="252" r="5"></circle><text x="65" y="262" dy="10pt">min</text></g><g><circle class="dot" cx="125" cy="180" r="5"></circle><text x="125" y="190" dy="10pt">med</text></g><g><circle class="dot" cx="185" cy="156" r="5"></circle><text x="185" y="166" dy="10pt">ave</text></g></g></svg>

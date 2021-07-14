@@ -2,7 +2,16 @@
 
 SVG charting demo using clojure and reagent
 
-Sample: [bar chart render](sample.html)
+## Sample Rendering
+
+Vertical bar chart
+
+![Vertical bar chart](sample-barchart-v.svg?raw=true)
+
+Horizontal bar chart
+
+![Horizontal bar chart](sample-barchart-h.svg?raw=true)
+
 # Development
 
 ## Dependencies

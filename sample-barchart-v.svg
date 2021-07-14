@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg  xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+<style type="text/css" scoped="">
+.g {
+fill: black;
+}
+g text {
+fill: white;
+}
+.bar {
+stroke: silver;
+stroke-width: 3;
+fill: cornflowerblue;
+}
+</style>
+<title>Bar Chart</title><g transform="rotate(-90) translate(-300,0)"><rect class="g" width="100%" height="100%"></rect><svg x="5" y="5"><rect class="bar" width="240" height="60" rx="10"></rect><text x="250" y="25" dy="10pt">max</text></svg><svg x="5" y="65"><rect class="bar" width="48" height="60" rx="10"></rect><text x="58" y="25" dy="10pt">min</text></svg><svg x="5" y="125"><rect class="bar" width="120" height="60" rx="10"></rect><text x="130" y="25" dy="10pt">med</text></svg><svg x="5" y="185"><rect class="bar" width="144" height="60" rx="10"></rect><text x="154" y="25" dy="10pt">ave</text></svg></g></svg>

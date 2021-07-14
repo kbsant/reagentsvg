@@ -15,5 +15,6 @@ pom.xml.asc
 .cpcache/
 node_modules/
 cljs-runtime/
+js/
 package-lock.json
 .shadow-cljs

@@ -126,6 +126,7 @@ fill: darkslategray;
 .line {
 stroke: darkslateblue;
 stroke-width: 3;
+fill: none;
 }
 .dot {
 stroke: silver;
@@ -149,7 +150,7 @@ fill: cyan;
     ^{:key (str "line-item-" box-id "." n)}
     [:g
      [:circle {:class "dot" :cx x :cy y :r 5}]
-     [:text {:x x :y (+ 10 y) :dy "10pt" } label]]))
+     [:text {:x (+ 10 x) :y (- y 5) :dy "10pt" } label]]))
 
 (defn line-poly-points [box]
   (let [{:keys [points]} box]

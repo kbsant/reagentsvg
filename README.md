@@ -55,9 +55,13 @@ Use java to run the jar:
 # Attribution
 
 The initial project was generated using a template: <https://github.com/reagent-project/reagent-template>
+Referred to <https://developer.mozilla.org> for the SVG documentation.
 
-SVG samples are original works. Thanks to <https://developer.mozilla.org> for the SVG documentation.
+The following are original works, covered by the license below:
+* cljc/reagentsvg/graph.cljc
+* cjls/reagentsvg/core.cljs
+* sample-*.svg
 
 # License
 
-MIT license, same as the above template.
+MIT license.

@@ -24,7 +24,7 @@
   {:title "Bar Chart"
    :width 300
    :height 300
-   :style "svg {stroke: green;}" ;; or omit style to use default.
+   :style "svg {stroke: green;}" ;; or omit style to use default bar-graph-style
    :colors ["red" "blue" "teal"] ;; default is cornflowerblue
    :padding 5                    ;; default is 5
    :tags #{:vertical}}
@@ -45,7 +45,7 @@
 (line-graph
   {:title "Line Chart"
    :width 300
-   :height 300}
+   :height 300} ;; style can also be specified
   line-data)
 
 )

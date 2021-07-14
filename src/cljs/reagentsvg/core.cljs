@@ -1,6 +1,5 @@
 (ns reagentsvg.core
   (:require
-   [reagent.core :as reagent]
    [reagent.dom :as rdom]
    [reagentsvg.graph :as graph]
    ))
@@ -48,12 +47,7 @@
      (graph/bar-graph (-> bar-config
                           (assoc :colors ["firebrick" "teal" "goldenrod"])
                           (dissoc :tags))
-                      bar-data)
-     ]))
-
-
-;; -------------------------
-;; Initialize app
+                      bar-data)]))
 
 (defn init! []
   (rdom/render [home-page] (.getElementById js/document "app")))

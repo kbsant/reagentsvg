@@ -4,12 +4,6 @@
    [reagent.dom :as rdom]
    ))
 
-;; -------------------------
-;; Routes
-
-;; -------------------------
-;; Page components
-
 (def bar-style
   {:title "Bar Chart"
    :width 300

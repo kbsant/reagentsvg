@@ -2,9 +2,12 @@
 
 SVG charting demo using clojure and reagent
 
+* FIXME This project is not affiliated with Reagent. Better to rename it.
+
 ## Works with static pages, too!
 
 Although this demo uses reagent, the svg code is in cljc files, which means they can be used to render static pages using hiccup.
+See `static/demo.html` , which uses [scittle](https://github.com/babashka/scittle) with [reagent](https://github.com/reagent-project/reagent).
 
 ## Sample Rendering
 

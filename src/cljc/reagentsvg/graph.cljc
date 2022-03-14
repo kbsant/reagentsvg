@@ -1,6 +1,10 @@
+;; ReagentSVG -- MIT License.
+;; No affiliation with Reagent.
+;; FIXME rename project, as it is simply some svg graphs in hiccup format.
 (ns reagentsvg.graph
   (:require
    [clojure.string :as string]))
+
 
 ;; # SVG line and bar charts.
 ;; Limitation - styling is not flexible.
@@ -48,6 +52,39 @@
    :height 300} ;; style can also be specified
   line-data)
 
+
+;; sample xy data
+(def xy-data
+  [{:label "org"
+    :hidden true
+    :x 0
+    :y 0}
+   {:label "10,20"
+    :x 10
+    :y 20}
+   {:label "20,80"
+    :x 20
+    :y 80}
+   {:label "30,50"
+    :x 30
+    :y 50}
+   {:label "40,40"
+    :x 40
+    :y 40}
+   {:label "50,70"
+    :x 50
+    :y 70}
+   {:label "max"
+    :hidden true
+    :x 100
+    :y 100}])
+
+;; render xy
+(graph/xy-graph
+    {:title "XY Chart"
+     :width 300
+     :height 300} ;; style can also be specified
+    xy-data)
 )
 
 (def bar-graph-style
@@ -199,4 +236,56 @@ fill: cyan;
        (line-graph-guides box)
        (line-graph-stroke poly-points)
        (map-indexed (partial line-graph-item box) data)]]]))
+
+(def xy-graph-style
+  "
+.box {
+fill: black;
+}
+g text {
+fill: white;
+}
+.dot {
+stroke: silver;
+stroke-width: 1;
+fill: lime;
+}
+")
+
+(defn xy-graph-point [box points-acc item]
+  (let [{:keys [box-width box-height max-x max-y padding]} box
+        {vx :x vy :y :or {vx 0 vy 0}} item
+        x (-> (float vx) (* box-width) (/ max-x) (* 0.8) (int) (+ padding))
+        y (-> (float vy) (* box-height) (/ max-y) (* 0.8) (int) (+ padding))]
+    (conj points-acc [x y])))
+
+(defn xy-graph-item [box n item]
+  (when-not (:hidden item)
+    (let [{:keys [box-id points]} box
+          label (:label item)
+          [x y] (get points n [0 0])]
+      ^{:key (str "xy-item-" box-id "." n)}
+      [:g
+       [:circle {:class "dot" :cx x :cy y :r 3}]
+       [:text {:x (+ 5 x) :y (- y 5) :dy "10pt" } label]])))
+
+(defn xy-graph [config data]
+  (let [{:keys [width height title style]} config
+        max-x (apply max (map :x data))
+        max-y (apply max (map :y data))
+        box-0 {:box-id (rand-int 1000000)
+               :box-width width
+               :box-height height
+               :max-x max-x
+               :max-y max-y
+               :padding 5}
+        points (reduce (partial xy-graph-point box-0) [] data)
+        box (assoc box-0 :points points)]
+    [:div
+     [:svg {:width width :height height}
+      (wrap-style (or style xy-graph-style))
+      [:title title]
+      [:g
+       [:rect {:class "box" :width "100%" :height "100%"}]
+       (map-indexed (partial xy-graph-item box) data)]]]))
 

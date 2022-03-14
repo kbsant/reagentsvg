@@ -1,0 +1,104 @@
+<html>
+<head>
+<!--
+This demo file is public domain.
+https://github.com/babashka/scittle  Scittle is licensed EPL.       
+https://github.com/reagent-project/reagent Reagent is licensed MIT.
+All other scripts have licenses indicated in the respective files.
+-->
+    <script src="scripts/scittle.js" type="application/javascript"></script>
+    <script src="scripts/react.production.min.js"></script>
+    <script src="scripts/react-dom.production.min.js"></script>
+    <script src="scripts/scittle.reagent.js" type="application/javascript"></script>
+    <script src="scripts/graph.cljc" type="application/x-scittle"></script>
+    <script type="application/x-scittle">
+(require '[reagent.core :as r]
+         '[reagent.dom :as rdom]
+         '[reagentsvg.graph :as graph])
+
+(def line-data
+  [{:label "max"
+    :value 100}
+   {:label "min"
+    :value 20}
+   {:label "med"
+    :value 50}
+   {:label "ave"
+    :value 60}])
+
+(def xy-data
+  [{:label "org"
+    :hidden true
+    :x 0
+    :y 0}
+   {:label "10,20"
+    :x 10
+    :y 20}
+   {:label "20,80"
+    :x 20
+    :y 80}
+   {:label "30,50"
+    :x 30
+    :y 50}
+   {:label "40,40"
+    :x 40
+    :y 40}
+   {:label "50,70"
+    :x 50
+    :y 70}
+   {:label "max"
+    :hidden true
+    :x 100
+    :y 100}])
+
+(def bar-data
+  [{:label "max"
+    :value 100}
+   {:label "min"
+    :value 20}
+   {:label "med"
+    :value 50}
+   {:label "ave"
+    :value 60}])
+
+(defn my-component []
+  [:div
+   [:p "Line Graph:"]
+   (graph/line-graph
+    {:title "Line Chart"
+     :width 300
+     :height 300} ;; style can also be specified
+    line-data)
+   [:p "XY Graph:"]
+   (graph/xy-graph
+    {:title "XY Chart"
+     :width 300
+     :height 300} ;; style can also be specified
+    xy-data)
+   [:p "Bar Graph:"]
+   (graph/bar-graph 
+    {:title "Bar Chart"
+     :width 300
+     :height 300
+     :colors ["red" "blue" "teal"] ;; default is cornflowerblue
+     :padding 5                    ;; default is 5
+     :tags #{:vertical}}
+    bar-data)
+   [:p "Horizontal Graph:"]
+   (graph/bar-graph 
+    {:title "Bar Chart"
+     :width 300
+     :height 300
+     :colors ["yellow" "green" "darkorange"] ;; default is cornflowerblue
+     :padding 5                    ;; default is 5
+     }
+    bar-data)
+   ])
+
+(rdom/render [my-component] (.getElementById js/document "app"))
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
